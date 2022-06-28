@@ -36,7 +36,7 @@ while (true)
 	Commands.ExecuteByName(TextResult.Name, TextResult.Args);
 }
 ```
-Super easy to use, and can be customized for your own usage with the ICommand & ICommand<T> interfaces.
+Super easy to use, and can be customized for your own usage with the ICommand & the generic ICommand interfaces.
 
 ## Info
 This supports commands with no return type & commands with a return type. It also uses a generic interface which means you can implement your own command if you needed to.
