@@ -1,6 +1,4 @@
-﻿
-
-namespace Commands.Core;
+﻿namespace Commands.Core;
 
 public class BaseCommand<T> : ICommand<T>
 {

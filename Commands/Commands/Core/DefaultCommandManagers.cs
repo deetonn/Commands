@@ -18,8 +18,13 @@ public class CommandManager : ICommandManager
         Commands.Add(command);
     }
 
+    public void AddDefault(string name, Action<List<string>> action)
+        => Add(new BaseCommand(name, action));
+
     public bool Contains(ICommand command)
         => Commands.Contains(command);
+    public bool Contains(string name)
+        => Commands.Where(c => c.Name == name).Any();
 
     public void ExecuteByName(string name, List<string> arguments)
     {
@@ -38,7 +43,6 @@ public class CommandManager : ICommandManager
 
         Command.Invoke(arguments);
     }
-
     public Task? ExecuteByNameAsync(string name, List<string> arguments)
     {
         if (Count == 0)
@@ -75,6 +79,9 @@ public class CommandManager<T> : ICommandManager<T>
     {
         Commands.Add(command);
     }
+
+    public void AddDefault(string name, Func<List<string>, T> action)
+        => Add(new BaseCommand<T>(name, action));
 
     public bool Contains(ICommand<T> command)
         => Commands.Contains(command);
