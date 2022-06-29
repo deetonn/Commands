@@ -3,6 +3,8 @@ using CommandLine;
 
 namespace Commands.Extensions;
 
+// for support with https://github.com/commandlineparser/commandline
+
 public class BindedCommand<Binder> : ICommand
 {
     public virtual string Name { get; } = default!;
