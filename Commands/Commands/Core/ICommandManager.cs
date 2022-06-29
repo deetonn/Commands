@@ -7,11 +7,6 @@ namespace Commands.Core;
 public interface ICommandManager
 {
     /// <summary>
-    /// The collection containing the ICommand instances.
-    /// </summary>
-    public CommandCollection Commands { get; }
-
-    /// <summary>
     /// The amount of commands currently being managed. 
     /// </summary>
     public int Count { get; }
@@ -57,11 +52,6 @@ public interface ICommandManager
 
 public interface ICommandManager<T>
 {
-    /// <summary>
-    /// The collection containing the ICommand instances.
-    /// </summary>
-    public CommandCollection<T> Commands { get; }
-
     /// <summary>
     /// The amount of commands currently being managed. 
     /// </summary>

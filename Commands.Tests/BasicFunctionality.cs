@@ -4,6 +4,8 @@ using Commands.Core;
 using Commands.Extensions;
 
 using System.Linq;
+using System.Collections.Generic;
+using Commands.Text;
 
 namespace Commands.Tests;
 
@@ -39,5 +41,22 @@ public class BasicFunctionality
         BindedCommand<CustomCommandOptions, CustomCommandOptions> custom = new TestCustomCommand();
 
         Assert.True(custom.Action((new string[1] { "-v" }).ToList()).Verbose);
+    }
+
+    [Fact]
+    public void DefaultParserExpectedResult()
+    {
+        string text = "info --help -v \"...\"";
+        string expected_command = "info";
+        List<string> expected_arguments = new()
+        {
+            "--help",
+            "-v",
+            "\"...\""
+        };
+
+        var result = CommandParser.DefaultParse(text);
+        Assert.Equal(expected_command, result.Name);
+        Assert.Equal(expected_arguments, result.Args);
     }
 }

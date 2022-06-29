@@ -125,3 +125,105 @@ public class CommandManager<T> : ICommandManager<T>
     public void Remove(ICommand<T> command)
         => Commands.Remove(command);
 }
+
+/// <summary>
+/// This class does not implement ICommandManager
+/// </summary>
+public class CommandQueue
+{
+    protected Queue<ICommand> @Commands { get; set; }
+    public int Count => @Commands.Count;
+
+    public CommandQueue()
+    {
+        @Commands = new Queue<ICommand>();
+    }
+    public CommandQueue(int capacity)
+    {
+        @Commands = new Queue<ICommand>(capacity);
+    }
+
+    public void Add(ICommand command)
+        => @Commands.Enqueue(command);
+    public ICommand GetNext()
+        => Commands.Dequeue();
+    public bool Contains(ICommand command)
+        => @Commands.Contains(command);
+    public bool Contains(string name)
+        => Commands.Any(x => x.Name == name);
+}
+
+/// <summary>
+/// This class does not implement ICommandManager
+/// </summary>
+/// <typeparam name="T">The type the command should return</typeparam>
+public class CommandQueue<T>
+{
+    protected Queue<ICommand<T>> @Commands { get; set; }
+    public int Count => @Commands.Count;
+
+    public CommandQueue()
+    {
+        @Commands = new Queue<ICommand<T>>();
+    }
+    public CommandQueue(int capacity)
+    {
+        @Commands = new Queue<ICommand<T>>(capacity);
+    }
+
+    public void Add(ICommand<T> command)
+        => @Commands.Enqueue(command);
+    public ICommand<T> GetNext()
+        => Commands.Dequeue();
+    public bool Contains(ICommand<T> command)
+        => @Commands.Contains(command);
+    public bool Contains(string name)
+        => Commands.Any(x => x.Name == name);
+}
+
+/// <summary>
+/// This class does not implement ICommandManager
+/// </summary>
+public class CommandStack
+{
+    protected Stack<ICommand> @Commands { get; set; }
+    public int Count => @Commands.Count;
+
+    public CommandStack()
+        => @Commands = new Stack<ICommand>();
+    public CommandStack(int capacity)
+        => @Commands = new Stack<ICommand>(capacity);
+
+    public void Push(ICommand command)
+        => @Commands.Push(command);
+    public ICommand Pop()
+        => @Commands.Pop();
+    public ICommand Peek()
+        => @Commands.Peek();
+    public void Clear()
+        => @Commands.Clear();
+}
+
+/// <summary>
+/// This class does not implement ICommandManager
+/// </summary>
+/// <typeparam name="T">The type the command should return</typeparam>
+public class CommandStack<T>
+{
+    protected Stack<ICommand<T>> @Commands { get; set; }
+    public int Count => @Commands.Count;
+
+    public CommandStack()
+        => @Commands = new Stack<ICommand<T>>();
+    public CommandStack(int capacity)
+        => @Commands = new Stack<ICommand<T>>(capacity);
+
+    public void Push(ICommand<T> command)
+        => @Commands.Push(command);
+    public ICommand<T> Pop()
+        => @Commands.Pop();
+    public ICommand<T> Peek()
+        => @Commands.Peek();
+    public void Clear()
+        => @Commands.Clear();
+}
