@@ -18,8 +18,8 @@ public class BaseCommand<T> : ICommand<T>
     public T Invoke(List<string> arguments)
         => Action(arguments);
 
-    public Task<T> BeginInvoke(List<string> arguments)
-        => Task.Run(() => Invoke(arguments));
+    public async Task<T> BeginInvoke(List<string> arguments)
+        => await Task.Run(() => Invoke(arguments));
 }
 public class BaseCommand : ICommand
 {
@@ -38,8 +38,8 @@ public class BaseCommand : ICommand
 
     public void Invoke(List<string> arguments)
         => Action(arguments);
-    public Task BeginInvoke(List<string> arguments)
-        => Task.Run(() => Invoke(arguments));
+    public async Task BeginInvoke(List<string> arguments)
+        => await Task.Run(() => Invoke(arguments));
 }
 
 public class Command : BaseCommand 
