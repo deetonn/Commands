@@ -28,9 +28,9 @@ CommandManager manager = new();
 
 manager.Add(new CustomCommand("test.command", o =>
 {
-	if (o.Verbose)
+    if (o.Verbose)
     {
-		foreach (var item in o.Opts)
+	foreach (var item in o.Opts)
         {
             Console.WriteLine($"Option: {item}");
         }
@@ -39,24 +39,24 @@ manager.Add(new CustomCommand("test.command", o =>
 
 manager.ExecuteByName("test.command", new string[]
 {
-		"-v -O \"Option1\" \"Option2\""
+	"-v -O \"Option1\" \"Option2\""
 }.ToList());
 
 internal sealed class Options
 {
-		[Option('v', "verbose")]
-		public bool Verbose { get; set; } = false;
+	[Option('v', "verbose")]
+	public bool Verbose { get; set; } = false;
 
-		[Option('O', "options")]
-		public IEnumerable<string> Opts { get; set; } = Array.Empty<string>();
+	[Option('O', "options")]
+	public IEnumerable<string> Opts { get; set; } = Array.Empty<string>();
 }
 
 internal sealed class CustomCommand : BindedCommand<Options>
 {
-		public CustomCommand(string name, Action<Options> action)
-			: base(action)
-		{
-			Name = name;
-		}
+	public CustomCommand(string name, Action<Options> action)
+		: base(action)
+	{
+		Name = name;
+	}
 }
 ```
