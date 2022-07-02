@@ -14,7 +14,7 @@ internal sealed class Options
 	public bool Verbose { get; set; } = false;
 }
 ```
-(using "'" because otherwise it tries doing some format stuff)
+(using ' because otherwise it tries doing some format stuff)
 instead of doing the parsing yourself, BindedCommand<'Binder>/BindedCommand<'Binder, 'T> will do it for you. It accepts either an Action<'Options> or a Func<`Options, T>, so your callback will just receive the parsed results instead of repeating code for each command.
 
 So yeah, still looking into the library more.
