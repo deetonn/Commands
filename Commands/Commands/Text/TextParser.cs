@@ -5,6 +5,12 @@ public sealed class CommandParserResult
     public bool Failed { get; init; }
     public string? Name { get; init; }
     public List<string>? Args { get; init; }
+
+    public static bool TryParse(string input, out CommandParserResult result)
+    {
+        result = CommandParser.DefaultParse(input);
+        return result.Failed;
+    }
 }
 
 public static class CommandParser
@@ -87,6 +93,9 @@ public static class CommandParserExtensions
         return result;
     }
 
+// make this optional because it could conflict with other extensions and be annoying.
+#if COMMANDS_USE_STRING_EXTENSIONS
+
     /// <summary>
     /// Attempt to parse this string instance.
     /// </summary>
@@ -99,4 +108,9 @@ public static class CommandParserExtensions
         res = result;
         return result.Failed;
     }
+
+    public static CommandParserResult Parse(this string str)
+        => CommandParser.DefaultParse(str);
+
+#endif
 }

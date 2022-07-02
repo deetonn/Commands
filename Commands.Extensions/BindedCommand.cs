@@ -5,6 +5,11 @@ namespace Commands.Extensions;
 
 // for support with https://github.com/commandlineparser/commandline
 
+/// <summary>
+/// a command that is binded to an option class. the project must be using the CommandLineParser
+/// package from nuget. (see https://github.com/commandlineparser/commandline) 
+/// </summary>
+/// <typeparam name="Binder">A class which implements CommandLine.OptionAttribute's</typeparam>
 public class BindedCommand<Binder> : ICommand
 {
     public virtual string Name { get; } = default!;
@@ -24,6 +29,11 @@ public class BindedCommand<Binder> : ICommand
     }
 }
 
+/// <summary>
+/// a command that returns <typeparamref name="T"/> that is binded to an option class. the project must be using the CommandLineParser
+/// package from nuget. (see https://github.com/commandlineparser/commandline) 
+/// </summary>
+/// <typeparam name="Binder">A class which implements CommandLine.OptionAttribute's</typeparam>
 public class BindedCommand<Binder, T> : ICommand<T>
 {
     public virtual string Name { get; } = default!;
